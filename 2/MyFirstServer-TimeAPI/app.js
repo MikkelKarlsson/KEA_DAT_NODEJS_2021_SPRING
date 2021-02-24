@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
 
-
-
-
 app.get("/", (req, res) => {
     res.send({});
 });
@@ -17,10 +14,13 @@ app.get("/time", (req, res) => {
 });
 
 app.get("/day", (req, res) => {
-    const today = new Date();
-    const day = today.getDate();
+    const arrayOfWeekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const dateObj = new Date()
+    const weekdayNumber = dateObj.getDay()
+    const weekdayName = arrayOfWeekdays[weekdayNumber]
     res.send({
-        day
+        weekdayNumber,
+        weekdayName
     });
 });
 
