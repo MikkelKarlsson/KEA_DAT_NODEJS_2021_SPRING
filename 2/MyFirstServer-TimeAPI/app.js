@@ -43,4 +43,10 @@ app.get("/currentDateAndTime", (req, res) => {
     });
 });
 
+app.get("/about", (req, res) => {
+    res.send({
+
+    });
+});
+
 app.listen(8080);
