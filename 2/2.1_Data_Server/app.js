@@ -1,6 +1,14 @@
 const express = require("express");
 const app = express();
 
+const cat = require("./cat.json");
+
+console.log(cat);
+
+app.get("/cat", (req, res) => {
+    
+})
+
 app.get("/querystring", (req, res) => {
     console.log(req.query);
     res.send({ query: req.query});
@@ -18,5 +26,13 @@ app.post("/whatever", (req, res) => {
     res.send({ body: req.body })
 });
 
+if (undefined) {
+    console.log("Getting to line 22");
+}
 
-app.listen(8080);
+app.listen(8080, (error) => {
+    if(error) {
+        console.log(error);
+    }
+    console.log("Server is running on port", 8080);
+});
