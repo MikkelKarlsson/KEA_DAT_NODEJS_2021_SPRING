@@ -6,11 +6,11 @@ console.log(__dirname);
 app.get("/", (req, res) => {
     // in node you have __dirname__
     // to serve an html file you have the res.sendFile method
-    res.sendFile(__dirname + "public/../public/welcome.html");
+    res.sendFile(__dirname + "/public/welcome.html");
 })
 
 app.get("/dragons", (req, res) => {
-    res.sendFile(__dirname + "public/../public/dragons.html");
+    res.sendFile(__dirname + "/public/dragons.html");
 })
 
 app.listen(8080, (error) => {
