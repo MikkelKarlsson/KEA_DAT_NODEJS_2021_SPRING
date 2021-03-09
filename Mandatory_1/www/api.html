@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>KENZYY's Teaching Hotspot</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Mikkel 'KENZYY' Karlsson</span>
+              <!--SKIFT BILLEDE-->  <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/api">API</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/codesnippets">Code Snippets</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/terminal">Terminal Commands</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/theory">Theorys</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/tools">Tools</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+<!-- Education-->
+<section class="resume-section" id="education">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Application Programming Interface - API</h2>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+                <h3 class="mb-0">Create, Read, Update, Delete - CRUD</h3>
+                <div class="subheading mb-3">Better known as CRUD API</div>
+                <div class="subheading mb-3"><br>What is API though? Watch the video below to get a better understanding</div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/s7wmiS2mSXY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                <div class="subheading mb-3"><br>How to make a CRUD API?</div>
+                <div>Shown below is an example of how u make a complete CRUD API</div>
+                <div><br>This example makes use of MySQL & Routes and assumes that u have knowledge of 'node.js'</div>
+                <div><br>Begin with adding the code below into your 'app.js' and insert the commands into the terminal which is noted in the code</div>
+                <pre><code>
+                    //Installing web framework for Node.js
+                    //Using this commando in the terminal 'npm install express --save'
+                    //Also installing nodemon for faster use 'npm install -g nodemon'
+                    const express = require("express");
+                    const app = express();
+                    app.use(express.json());
+                    
+                    //download mysql 'npm install mysql'
+                    
+                    //Connecting to database
+                    const mysql = require("mysql");
+                    const connection = mysql.createConnection({
+                        host: "localhost",
+                        port: "3306",
+                        user: "root", 
+                        password: "ascent12345",
+                        database: "nodejsdb",
+                    })
+                    
+                    //Calls crmRoutes
+                    const routes = require("./src/routes/crmRoutes");
+                    routes(app, connection);
+                    
+                    connection.connect((err) => {
+                        if(!err){
+                            console.log("DATABASE CONNECTION SUCCESFUL");
+                        }else{
+                            console.log("ERROR COULD NOT CONNECT TO DATABASE: " + JSON.stringify(err, undefined, 2));
+                        }
+                    })
+                    
+                    // function
+                    app.get("/message", function (req, res) {
+                        res.send({message: " This is my response 1"});
+                    });
+                    
+                    // Arrow - best practice
+                    app.get("/message/test", (req, res) => {
+                        console.log(req.params.id + " This is my response 2");
+                    });
+                    
+                    app.listen(5454);
+                </code></pre>
+                <div><br>Create a new folder called Routes. Within routes create a file named 'crmRoutes.js'</div>
+                <div><br>Insert the following code:</div>
+                <pre><code>
+                    const { createPool } = require("mysql");
+
+                    const routes = (app, connection) => {
+                        app.route("/contact")
+                    
+                            .get((req, res, next) => {
+                                //This is called middleware
+                                console.log('Request from: ' + req.originalURL);
+                                console.log('Request from: ' + req.method);
+                    
+                                next();
+                    
+                            }, (req, res, next) => {
+                    
+                                // Select from mysql database and give rows as json result
+                                connection.query("SELECT * FROM contact", (err, rows, fields) => {
+                                console.log("Succesfully fetched all contacts");
+                                res.json(rows);
+                            })
+                            })
+                    
+                            .post((req, res, next) => {
+                            // middleware
+                            console.log('Request from: ' + req.originalUrl);
+                            console.log('Request from: ' + req.method);
+                    
+                            next();
+                            }, (req, res, next) => {
+                    
+                            const params = req.body
+                            // Select from mysql database and give rows as json result
+                                connection.query("INSERT INTO contact SET ?", params, (err, rows, fields) => {
+                                console.log("Succesfully created a contact");
+                                res.send('Contact with the name ' + params.firstname + ' ' + params.lastname + ' has been added.');
+                                })
+                            })
+                    
+                        app.route("/contact/:id")
+                            // Get contact by id
+                            .get((req, res) => {
+                            connection.query("SELECT * FROM contact WHERE id = ?", [req.params.id], (err, rows, fields) => {
+                                if(!err)
+                                res.send(rows);
+                                else
+                                console.log(err);
+                                })
+                            })
+                    
+                            // Delete contact by id
+                            .delete( (req, res) => {
+                            connection.query("DELETE FROM contact WHERE id = ?",[req.params.id],(err, rows, fields) => {
+                                if(!err)
+                                res.send("Deleted Succesfully");
+                                else
+                                console.log(err);
+                                })
+                            })
+                    
+                            // Update
+                            .put((req, res) => {
+                                console.log("connected as id " + req.params.id)
+                                let id = req.params.id
+                                const { firstname, lastname } = req.body
+                    
+                                connection.query("UPDATE contact SET firstname = ?, lastname = ? WHERE id = ?", [firstname, lastname, id] , (err) => {
+                    
+                                    if(!err) {
+                                        res.send("Contact name has been changed to: " + firstname + " " + lastname)
+                                    } else {
+                                        console.log(err);
+                                    }
+                                })
+                    
+                                console.log(req.body);
+                            })
+                    }
+                    
+                    module.exports = routes
+                </code></pre>
+                <div><br>To modify this code so it works for you, you have to do the following:</div>
+                <div><br>Create a MySQL database and change to the correct credentials</div>
+                <div><br>Make sure you inserted the correct terminal commands</div>
+                <div><br>Change the database table and query to what you use as nouns eg. Contact --> Person, firstName --> eyeColor</div>
+                <div class="subheading mb-3"><br>You should now have a working CRUD API, CONGRATS!</div>
+            </div>
+</section>
+<hr class="m-0" />
+</div>
+            <hr class="m-0" />
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
