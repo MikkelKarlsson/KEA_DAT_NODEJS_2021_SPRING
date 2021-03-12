@@ -12,6 +12,8 @@ let plants = [
     }
 ];
 
+let id = plants.length;
+
 app.get("/plants", (req, res) => {
     res.send({ plants: plants });
 });
@@ -22,16 +24,30 @@ app.get("/plants/:id", (req, res) => {
     res.send({ foundPlant: foundPlant });
 });
 
+app.post("/plants", (req, res) => {
+    const newPlant = req.body;
+    newPlant.id = ++id;
+    plants.push(newPlant);
+    res.send({ data: newPlant });
+});
 
+app.patch("/plants/:id", (req, res) => {
+    let plantUpdated = false;
+    plants = plants.map(plant => {
+        if (plant.id === Number(req.params.id)){
+            plantUpdated = true;
+            return { ...plant, ...req.body, id: plant.id };
+        }
+        return plant;
+    });
+    res.send({ data: plantUpdated});
+});
 
-
-
-
-
-
-
-
-
+app.delete("/plants/:id", (req, res) =>{
+    const id = Number(req.params.id);
+    plants = plants.filter(plant => plant.id !== id);
+    res.send({ });
+});
 
 app.listen(8080, (error) => {
     if(error){
