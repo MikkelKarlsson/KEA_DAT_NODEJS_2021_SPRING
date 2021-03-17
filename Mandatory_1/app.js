@@ -37,6 +37,22 @@ app.get('/tools', function(req, res) {
     res.sendFile(path.join(__dirname + '/www/tools.html'));
 });
 
+app.get('/express', function(req, res) {
+    res.sendFile(path.join(__dirname + '/www/express.html'));
+});
+
+app.get('/nodejs', function(req, res) {
+    res.sendFile(path.join(__dirname + '/www/nodejs.html'));
+});
+
+app.get('/nodemon', function(req, res) {
+    res.sendFile(path.join(__dirname + '/www/nodemon.html'));
+});
+
+app.get('/mysql', function(req, res) {
+    res.sendFile(path.join(__dirname + '/www/mysql.html'));
+});
+
     //Listenen to the port
 app.listen(port, (error) => {
     if(error) {

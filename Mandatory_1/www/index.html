@@ -14,7 +14,12 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+
+
     </head>
+
+
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
@@ -29,7 +34,21 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/codesnippets">Code Snippets</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/terminal">Terminal Commands</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/theory">Theorys</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/tools">Tools</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" id="myBtn" href="#">Tools</a></li>
+                    <!-- Trigger/Open The Modal -->
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>The explanation of the following tools has been taking directly from the documentation, to give the most precise and correct disclosure to what is it all about.</p>
+    <a class="nav-link js-scroll-trigger" href="/tools" style="color: black;">Click here to continue</a>
+    </div>
+
+    </div>
                 </ul>
             </div>
         </nav>
@@ -55,6 +74,11 @@
                     </div>
                 </div>
             </section>
+
+
+            <iframe style="display: none;" width="560" height="315" src="https://www.youtube.com/embed/iJ_pigL5-Lo?rel=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
             <hr class="m-0" />
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -63,5 +87,36 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+        <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+        modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+        </script>
+
+
+
     </body>
 </html>
