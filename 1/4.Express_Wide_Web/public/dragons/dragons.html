@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/dragons.css"/>
+
+    <title>Dragon Cave</title>
+
+</head>
+<body>
+  <h1>Welcome to my dragonscaveee</h1>
+
+  <a href="/">Ahhh - take me back!</a>
+
+  <p class="puff">Puff is inside u</p>
+
+  <div class="game-board">
+    <div class="box">200px x 200px</div>
+    <div class="box">200px x 200px</div>
+    <div class="box">200px x 200px</div>
+    <div class="box">200px x 200px</div>
+    <div class="box">200px x 200px</div>
+    <div class="box">200px x 200px</div>
+    <div class="box">200px x 200px</div>
+    <div class="box">200px x 200px</div>
+    <div class="box">200px x 200px</div>
+  </div>
+
+
+  <img id="dragon-img" src="https://cdn.pixabay.com/photo/2014/01/05/01/19/dragon-238931_1280.jpg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./dragons/dragons.js"></script>
+
+  <script>
+    const dragonImage = '<img id="dragon-img" src="https://cdn.pixabay.com/photo/2014/01/05/01/19/dragon-238931_1280.jpg">'
+
+    $("#1").append(dragonImage);
+
+    $(document).on("click", (event) => {
+
+    });
+
+
+
+    red = true
+
+  setInterval(() => {
+
+    if (red) {
+
+        $("body").css("background-color", "white") 
+
+    } else {
+
+        $("body").css("background-color", "red")
+
+    }
+
+    red = !red
+
+  }, 3000)
+  </script>
+
+</body>
+</html>
