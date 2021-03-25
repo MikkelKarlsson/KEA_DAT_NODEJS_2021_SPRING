@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Real-time Crypto Prices</h1>
+
+    <div>
+        <h3>Bitcoin</h3>
+        <br>
+        <p id="bitcoin-price"></p>
+    </div>
+
+    <div>
+        <h3>Ethereum</h3>
+        <br>
+        <p id="ethereum-price"></p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script>
+
+    <script>
+        // ID 90 = bitcoin
+        $.get("https://api.coinlore.net/api/ticker/?id=90", (data) => {
+            const bitcoinParagraph = document.getElementById("bitcoin-price");
+            bitcoinParagraph.innerText = "$" + data[0].price_usd;
+        });
+
+        // ID 80 = bitcoin
+        $.get("https://api.coinlore.net/api/ticker/?id=80", (data) => {
+            const ethereumParagraph = document.getElementById("ethereum-price");
+            ethereumParagraph.innerText = "$" + data[0].price_usd;
+        });
+    </script>
+
+    
+</body>
+</html>
