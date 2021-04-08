@@ -1,0 +1,31 @@
+{
+  "name": "nodefolio",
+  "version": "0.0.1",
+  "description": "A personal portfolio project using Node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikkelKarlsson/KEA_DAT_NODEJS_2021_SPRING.git"
+  },
+  "keywords": [
+    "portfolio",
+    "Node",
+    "personal"
+  ],
+  "author": "Mikkel Karlsson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikkelKarlsson/KEA_DAT_NODEJS_2021_SPRING/issues"
+  },
+  "homepage": "https://github.com/MikkelKarlsson/KEA_DAT_NODEJS_2021_SPRING#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7",
+    "packagea": "^2.0.0",
+    "packageb": "^1.0.0"
+  }
+}
