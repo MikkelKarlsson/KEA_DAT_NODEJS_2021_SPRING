@@ -2,7 +2,16 @@ const express = require("express");
 const app = express();
 app.use('/assets/css', express.static(__dirname + '/assets/css'));
 
-console.log(__dirname);
+const fetch = require("node-fetch");
+
+
+
+app.get("/proxy", (req, res) => {
+    fetch("https://www.google.com")
+        .then(res => res.text())
+        .then(body => console.log(body));
+})
+
 
 app.get("/", (req, res) => {
     // in node you have __dirname__
