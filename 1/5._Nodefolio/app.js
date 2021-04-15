@@ -7,6 +7,11 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+const projectsRouter = require("./routes/projects");
+
+app.use(projectsRouter.router);
+
+
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/");
